@@ -1,37 +1,33 @@
 key_words='developpeur\|ingenieur\|temps-reel\|embarqué'
 
-#---------- citech ------------
-web_citech=$(wget https://careers.smartrecruiters.com/CITECH/citech_jobs -q -O -)
-if [ $1 = "-v" ]
-then
-    echo $web_citech | grep --color=always $key_words
-else
-    echo is seeking on citech...
-fi
+# for each web page of the webpages.txt file
+# looking for the key words in its content
+while read line_content; do
+    echo --------------
+    echo is seeking on:     $line_content
+    echo --------------
 
-echo $web_page_citech >> /home/pi/workspace/log.txt
-if grep -q $key_words /home/pi/workspace/log.txt; then
-    echo citech found
-else
-    echo citech not found
-fi
+    # download the web page and read its content
+    web_page=$(wget $line_content -q -O -)
+    echo $web_page >> ${PWD}/log.txt
 
-#---------- viveris ------------
-web_page_viveris=$(wget https://www.viveris.fr/index.php/carrieres-et-emplois/viveris-ressources-humaines-offres-emplois-stages-ssi/viveris-ressources-humaines-offres-emplois.html?filter_32=3 -q -O -) 
-echo $web_page_viveris >> /home/pi/workspace/log.txt
+    # arg?
+    if [ -z "$1" ]; then
+        echo .
+    else
+        # verbose ?
+        if [ $1 = "-v" ]; then
+            echo $web_page | grep --color=always $key_words
+        else
+            echo .
+        fi
+    fi
 
-if [ $1 = "-v" ]
-then
-    echo $web_page_viveris | grep --color=always $key_words
-else
-    echo is sekking on viveris...
-fi
+    # grep the key words into the page
+    if grep -q $key_words ${PWD}/log.txt; then
+        echo found
+    else
+        echo not found
+    fi
 
-if grep -q $key_words /home/pi/workspace/log.txt; then
-    echo viveris found 
-else
-    echo viveris not found
-fi
-
-
-#http://www.cyberciti.biz/faq/grep-regular-expressions/
+    done < webpages.txt
