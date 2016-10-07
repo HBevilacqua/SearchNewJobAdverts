@@ -1,11 +1,20 @@
-key_words='developpeur\|ingenieur\|temps-reel\|embarqué'
+# build the words set
+idx=0
+while read word; do
+    if [ $idx = 0 ]; then
+        key_words="$word"
+    else
+        key_words="$key_words\|$word"
+    fi
+    idx=idx+1
+    done < keywords.txt
+
+echo ----- key words: $key_words
 
 # for each web page of the webpages.txt file
 # looking for the key words in its content
 while read line_content; do
-    echo --------------
-    echo is seeking on:     $line_content
-    echo --------------
+    echo ----- $line_content
 
     # download the web page and read its content
     web_page=$(wget $line_content -q -O -)
@@ -31,3 +40,5 @@ while read line_content; do
     fi
 
     done < webpages.txt
+
+echo ----- end
