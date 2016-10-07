@@ -1,12 +1,2 @@
-developpeur
-developer
-ingenieur
-engineer
-temps-réel
-temsp-reel
-real-time
-réel
-reel
-real
-embarqué
-embedded
+google
+career
