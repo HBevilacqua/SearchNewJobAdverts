@@ -1,7 +1,7 @@
 # SearchNewJobAdverts
 This script is going to count the number of key words (listed in list_keywords.txt)
 per web pages (= per lines in list_webpages.txt),<br>
-compare the result the previous one (reg_nb_words.txt)<br>
+compare the result with the previous one (reg_nb_words.txt)<br>
 and if it is different, inform the user.<br>
 
 ### Motivations
