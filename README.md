@@ -1,11 +1,11 @@
 # SearchNewJobAdverts
-This script is going to count the number of key words (listed in list_keywords.txt)
+This script counts the number of key words (listed in list_keywords.txt)
 per web pages (= per lines in list_webpages.txt),<br>
-compare the result with the previous one (reg_nb_words.txt)<br>
-and if it is different, inform the user.<br>
+compares the result with the previous one (reg_nb_words.txt)<br>
+informs the user about new information based on key words.<br>
 
 ### Motivations
-Find new job advertisements without visiting all the web pages in my list of companies
+Experimental code in *shell*.
 
 ### Instructions
 1) Write the list of web pages in the "list_webpages.txt" file.
